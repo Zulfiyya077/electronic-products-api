@@ -1,14 +1,21 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Base URL for images (Render-də deploy üçün)
+const BASE_URL = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Static files - şəkilləri serve etmək üçün
+app.use('/images', express.static(path.join(__dirname, 'asset')));
 
 // 50 Real Electronic Products Data
 let products = [
@@ -23,9 +30,9 @@ let products = [
     stock: true,
     description: "iPhone 14 Pro with A16 Bionic chip, ProMotion 120Hz display, 48MP main camera, Ceramic Shield, up to 1TB storage.",
     images: [
-      "https://pngimg.com/uploads/iphone16/iphone16_PNG38.png",
-      "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-14-pro-max-deep-purple-back.png?v=11",
-      "https://pngimg.com/uploads/iphone16/iphone16_PNG9.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -39,9 +46,9 @@ let products = [
     stock: true,
     description: "Galaxy S23 Ultra with Snapdragon 8 Gen 2, 200MP camera, S Pen support, 6.8-inch AMOLED, 5000mAh battery.",
     images: [
-      "https://www.pngall.com/wp-content/uploads/13/Galaxy-S23-Ultra.png",
-      "https://static.vecteezy.com/system/resources/previews/035/572/092/non_2x/samsung-galaxy-s23-ultra-without-pen-transparent-image-free-png.png",
-      "https://www.pngall.com/wp-content/uploads/13/Galaxy-S23-Ultra-PNG-Images.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -55,9 +62,9 @@ let products = [
     stock: true,
     description: "MacBook Pro 14-inch with M2 Pro chip, 16GB RAM, 512GB SSD, Liquid Retina XDR display, Thunderbolt 4 ports.",
     images: [
-      "http://www.playforce.com.sg/cdn/shop/files/11_149f2e1a-4b1d-49f5-86fc-c19efe2cb9c4_grande.png?v=1689668904",
-      "https://www.hoxtonmacs.co.uk/cdn/shop/files/apple-macbook-pro-14-inch-macbook-pro-14-inch-m2-pro-12-core-space-grey-2023-good-44361543942460.jpg?v=1701882496",
-      "https://macstore.id/wp-content/uploads/2023/05/mbp14-spacegray-gallery5-202301.jpeg"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -71,9 +78,9 @@ let products = [
     stock: true,
     description: "Dell XPS 15 with Intel i7 13th Gen, 16GB RAM, 512GB SSD, NVIDIA RTX 4050, 15.6-inch OLED display.",
     images: [
-      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-15-9530/media-gallery/touch-black/notebook-xps-15-9530-t-black-gallery-4.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=1354&qlt=100,1&resMode=sharp2&size=1354,804&chrss=full",
-      "https://laptopmedia.com/wp-content/uploads/2017/12/dell_xps_15_3.jpg",
-      "https://m.media-amazon.com/images/I/91WgL3IbNIL.jpg"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -87,9 +94,9 @@ let products = [
     stock: true,
     description: "Wireless gaming headset with noise cancelling, 3D sound with JBL QuantumSURROUND, detachable mic, RGB lighting.",
     images: [
-      "https://www.jbl.com/quantum800-black.png",
-      "https://www.jbl.com/quantum800-blue.png",
-      "https://www.jbl.com/quantum800-red.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -103,9 +110,9 @@ let products = [
     stock: true,
     description: "Noise cancelling headphones, up to 30 hours battery, touch controls, adaptive sound, premium comfort.",
     images: [
-      "https://www.sony.com/wh1000xm5-black.png",
-      "https://www.sony.com/wh1000xm5-silver.png",
-      "https://www.sony.com/wh1000xm5-blue.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -119,9 +126,9 @@ let products = [
     stock: true,
     description: "Apple Watch Series 8 with temperature sensing, ECG, blood oxygen, fitness tracking, swimproof, 18-hour battery.",
     images: [
-      "https://store.storeimages.cdn-apple.com/watch-series8-midnight.png",
-      "https://store.storeimages.cdn-apple.com/watch-series8-silver.png",
-      "https://store.storeimages.cdn-apple.com/watch-series8-red.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -135,9 +142,9 @@ let products = [
     stock: true,
     description: "Pixel 7 Pro with Google Tensor G2, 120Hz display, 50MP camera, AI-powered features, Android 13.",
     images: [
-      "https://store.google.com/pixel7pro-black.png",
-      "https://store.google.com/pixel7pro-white.png",
-      "https://store.google.com/pixel7pro-green.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -151,9 +158,9 @@ let products = [
     stock: true,
     description: "Handheld console with OLED display, 64GB storage, Joy-Con controllers, dock for TV mode, supports thousands of Nintendo games.",
     images: [
-      "https://assets.nintendo.com/switch-oled-white.png",
-      "https://assets.nintendo.com/switch-oled-red.png",
-      "https://assets.nintendo.com/switch-oled-blue.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -167,9 +174,9 @@ let products = [
     stock: true,
     description: "Next-gen console with Ultra HD Blu-ray, 4K gaming, haptic feedback controller, backwards compatible with PS4 games.",
     images: [
-      "https://www.playstation.com/ps5-white.png",
-      "https://www.playstation.com/ps5-digital.png",
-      "https://www.playstation.com/ps5-edition.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -183,9 +190,9 @@ let products = [
     stock: true,
     description: "Next-gen console with 12TFLOPs GPU, 1TB SSD, Quick Resume, backward compatibility, 4K gaming and streaming.",
     images: [
-      "https://www.xbox.com/series-x-black.png",
-      "https://www.xbox.com/series-x-limited.png",
-      "https://www.xbox.com/series-x-special.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -199,9 +206,9 @@ let products = [
     stock: true,
     description: "Full-frame mirrorless camera, 20fps shooting, 4K video, Dual Pixel CMOS AF II, ISO 102400.",
     images: [
-      "https://www.canon.com/eos-r6-front.png",
-      "https://www.canon.com/eos-r6-back.png",
-      "https://www.canon.com/eos-r6-lens.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -215,9 +222,9 @@ let products = [
     stock: true,
     description: "Compact drone with 4K video, 34-min flight time, obstacle sensors, foldable design, intelligent tracking.",
     images: [
-      "https://www.dji.com/mini-3-pro-front.png",
-      "https://www.dji.com/mini-3-pro-side.png",
-      "https://www.dji.com/mini-3-pro-top.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -231,9 +238,9 @@ let products = [
     stock: true,
     description: "High-performance tablet with 11-inch display, Snapdragon 8 Gen 1, 8GB RAM, 128GB storage, S Pen included.",
     images: [
-      "https://images.samsung.com/tab-s8-front.png",
-      "https://images.samsung.com/tab-s8-back.png",
-      "https://images.samsung.com/tab-s8-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -247,9 +254,9 @@ let products = [
     stock: true,
     description: "E-reader with 6.8-inch display, adjustable warm light, waterproof design, 8GB storage, weeks of battery life.",
     images: [
-      "https://images.amazon.com/kindle-paperwhite-front.png",
-      "https://images.amazon.com/kindle-paperwhite-back.png",
-      "https://images.amazon.com/kindle-paperwhite-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -263,9 +270,9 @@ let products = [
     stock: true,
     description: "Action camera with 5.3K video, HyperSmooth 5.0 stabilization, waterproof up to 10m, 27MP photos, voice control.",
     images: [
-      "https://gopro.com/hero11-front.png",
-      "https://gopro.com/hero11-back.png",
-      "https://gopro.com/hero11-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -279,9 +286,9 @@ let products = [
     stock: true,
     description: "Smart thermostat with learning capability, energy-saving features, voice control, app remote management.",
     images: [
-      "https://store.google.com/nest-front.png",
-      "https://store.google.com/nest-side.png",
-      "https://store.google.com/nest-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -295,9 +302,9 @@ let products = [
     stock: true,
     description: "1080p HD video, motion detection, two-way audio, easy installation, compatible with Alexa.",
     images: [
-      "https://ring.com/doorbell-front.png",
-      "https://ring.com/doorbell-side.png",
-      "https://ring.com/doorbell-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -311,9 +318,9 @@ let products = [
     stock: true,
     description: "iPad Pro 12.9-inch with M2 chip, Liquid Retina XDR display, 12MP camera, Face ID, Apple Pencil support.",
     images: [
-      "https://store.storeimages.cdn-apple.com/ipadpro-front.png",
-      "https://store.storeimages.cdn-apple.com/ipadpro-back.png",
-      "https://store.storeimages.cdn-apple.com/ipadpro-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -327,9 +334,9 @@ let products = [
     stock: true,
     description: "VR headset with 6GB RAM, 64GB storage, 1832x1920 per eye, wireless gameplay, hand tracking support.",
     images: [
-      "https://images.meta.com/quest2-front.png",
-      "https://images.meta.com/quest2-side.png",
-      "https://images.meta.com/quest2-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -343,9 +350,9 @@ let products = [
     stock: true,
     description: "Compact drone with 1-inch CMOS sensor, 5.4K video, 31-min flight, obstacle sensors, intelligent tracking.",
     images: [
-      "https://www.dji.com/air2s-front.png",
-      "https://www.dji.com/air2s-back.png",
-      "https://www.dji.com/air2s-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -359,9 +366,9 @@ let products = [
     stock: true,
     description: "Wireless ergonomic mouse, customizable buttons, fast scrolling, rechargeable, works on Windows & Mac.",
     images: [
-      "https://www.logitech.com/mx-master3-front.png",
-      "https://www.logitech.com/mx-master3-side.png",
-      "https://www.logitech.com/mx-master3-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -375,9 +382,9 @@ let products = [
     stock: true,
     description: "Wireless earbuds with ANC, 2-way speakers, 11mm bass, 61mAh battery, water-resistant.",
     images: [
-      "https://images.samsung.com/budspro-front.png",
-      "https://images.samsung.com/budspro-side.png",
-      "https://images.samsung.com/budspro-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -391,9 +398,9 @@ let products = [
     stock: true,
     description: "Fitness tracker with heart rate, sleep tracking, GPS, AMOLED display, stress management features.",
     images: [
-      "https://www.fitbit.com/charge5-front.png",
-      "https://www.fitbit.com/charge5-side.png",
-      "https://www.fitbit.com/charge5-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -407,9 +414,9 @@ let products = [
     stock: true,
     description: "Compact camera with 20MP, 4K video, DIGIC 8 processor, flip screen, Wi-Fi & Bluetooth.",
     images: [
-      "https://www.canon.com/powershot-front.png",
-      "https://www.canon.com/powershot-back.png",
-      "https://www.canon.com/powershot-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -423,9 +430,9 @@ let products = [
     stock: true,
     description: "Smart home hub for connecting devices, voice control, app management, compatible with Zigbee & Z-Wave devices.",
     images: [
-      "https://images.samsung.com/smartthings-front.png",
-      "https://images.samsung.com/smartthings-back.png",
-      "https://images.samsung.com/smartthings-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -439,9 +446,9 @@ let products = [
     stock: true,
     description: "Mechanical gaming keyboard with RGB lighting, programmable keys, wrist rest, durable design.",
     images: [
-      "https://www.razer.com/blackwidow-front.png",
-      "https://www.razer.com/blackwidow-side.png",
-      "https://www.razer.com/blackwidow-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -455,9 +462,9 @@ let products = [
     stock: true,
     description: "Active noise cancellation, spatial audio, adaptive EQ, wireless charging, sweat & water resistant.",
     images: [
-      "https://store.storeimages.cdn-apple.com/airpods-pro2-front.png",
-      "https://store.storeimages.cdn-apple.com/airpods-pro2-side.png",
-      "https://store.storeimages.cdn-apple.com/airpods-pro2-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -471,9 +478,9 @@ let products = [
     stock: true,
     description: "Snapdragon 8 Gen 2, 6.7-inch AMOLED 120Hz, 50MP triple camera, 100W fast charging, 16GB RAM.",
     images: [
-      "https://www.oneplus.com/11-black.png",
-      "https://www.oneplus.com/11-green.png",
-      "https://www.oneplus.com/11-blue.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -487,9 +494,9 @@ let products = [
     stock: true,
     description: "2-in-1 convertible laptop, Intel Core i7, 16GB RAM, 512GB SSD, 13.5-inch OLED touchscreen, 360-degree hinge.",
     images: [
-      "https://www.hp.com/spectre-front.png",
-      "https://www.hp.com/spectre-side.png",
-      "https://www.hp.com/spectre-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -503,9 +510,9 @@ let products = [
     stock: true,
     description: "Portable Bluetooth speaker, waterproof IP67, 12-hour battery, PositionIQ technology, clear sound.",
     images: [
-      "https://www.bose.com/soundlink-flex-front.png",
-      "https://www.bose.com/soundlink-flex-side.png",
-      "https://www.bose.com/soundlink-flex-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -519,9 +526,9 @@ let products = [
     stock: true,
     description: "61MP full-frame mirrorless camera, 8K video, Real-time Eye AF, 5-axis image stabilization, dual card slots.",
     images: [
-      "https://www.sony.com/alpha7rv-front.png",
-      "https://www.sony.com/alpha7rv-back.png",
-      "https://www.sony.com/alpha7rv-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -535,9 +542,9 @@ let products = [
     stock: true,
     description: "GPS running watch, advanced training metrics, music storage, 20-day battery, multi-band GPS, touchscreen.",
     images: [
-      "https://www.garmin.com/forerunner955-front.png",
-      "https://www.garmin.com/forerunner955-side.png",
-      "https://www.garmin.com/forerunner955-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -551,9 +558,9 @@ let products = [
     stock: true,
     description: "Wireless gaming headset, 24-hour battery, Discord-certified mic, 7.1 surround sound, compatible with PS5/PC.",
     images: [
-      "https://www.steelseries.com/arctis7p-front.png",
-      "https://www.steelseries.com/arctis7p-side.png",
-      "https://www.steelseries.com/arctis7p-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -567,9 +574,9 @@ let products = [
     stock: true,
     description: "Professional drone with 4/3 CMOS sensor, 5.1K video, 46-min flight time, omnidirectional obstacle sensing, 15km range.",
     images: [
-      "https://www.dji.com/mavic3-front.png",
-      "https://www.dji.com/mavic3-back.png",
-      "https://www.dji.com/mavic3-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -583,9 +590,9 @@ let products = [
     stock: true,
     description: "Ultra-light business laptop, Intel Core i7, 16GB RAM, 512GB SSD, 14-inch 2.8K display, MIL-STD tested.",
     images: [
-      "https://www.lenovo.com/thinkpad-x1-front.png",
-      "https://www.lenovo.com/thinkpad-x1-side.png",
-      "https://www.lenovo.com/thinkpad-x1-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -599,9 +606,9 @@ let products = [
     stock: true,
     description: "Snapdragon 8 Gen 2, 6.73-inch AMOLED 120Hz, 50MP Leica camera, 120W fast charging, 12GB RAM.",
     images: [
-      "https://www.mi.com/13pro-black.png",
-      "https://www.mi.com/13pro-white.png",
-      "https://www.mi.com/13pro-blue.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -615,9 +622,9 @@ let products = [
     stock: true,
     description: "Flagship mirrorless camera, 45.7MP sensor, 8K video, 120fps continuous shooting, dual card slots, weather-sealed.",
     images: [
-      "https://www.nikon.com/z9-front.png",
-      "https://www.nikon.com/z9-back.png",
-      "https://www.nikon.com/z9-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -631,9 +638,9 @@ let products = [
     stock: true,
     description: "15.6-inch smart display, Alexa voice control, video calling, smart home hub, Fire TV integration, wall mountable.",
     images: [
-      "https://images.amazon.com/echo-show15-front.png",
-      "https://images.amazon.com/echo-show15-side.png",
-      "https://images.amazon.com/echo-show15-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -647,9 +654,9 @@ let products = [
     stock: true,
     description: "Tenkeyless mechanical keyboard, Cherry MX switches, per-key RGB lighting, aircraft-grade aluminum frame, USB passthrough.",
     images: [
-      "https://www.corsair.com/k70-front.png",
-      "https://www.corsair.com/k70-side.png",
-      "https://www.corsair.com/k70-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -663,9 +670,9 @@ let products = [
     stock: true,
     description: "Premium smartwatch, 45mm titanium case, GPS tracking, sleep coaching, 80-hour battery, sapphire crystal display.",
     images: [
-      "https://images.samsung.com/watch5pro-front.png",
-      "https://images.samsung.com/watch5pro-side.png",
-      "https://images.samsung.com/watch5pro-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -679,9 +686,9 @@ let products = [
     stock: true,
     description: "48-inch OLED 4K TV, 120Hz refresh rate, Dolby Vision IQ, webOS 22, gaming features, perfect blacks.",
     images: [
-      "https://www.lg.com/c2-front.png",
-      "https://www.lg.com/c2-side.png",
-      "https://www.lg.com/c2-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -695,9 +702,9 @@ let products = [
     stock: true,
     description: "High-capacity power bank, 26800mAh, USB-C Power Delivery, 3 USB ports, fast charging, portable design.",
     images: [
-      "https://www.anker.com/powercore-front.png",
-      "https://www.anker.com/powercore-side.png",
-      "https://www.anker.com/powercore-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -711,9 +718,9 @@ let products = [
     stock: true,
     description: "2-in-1 tablet, Intel Core i5, 8GB RAM, 256GB SSD, 13-inch PixelSense display, Surface Pen compatible.",
     images: [
-      "https://www.microsoft.com/surface-pro9-front.png",
-      "https://www.microsoft.com/surface-pro9-side.png",
-      "https://www.microsoft.com/surface-pro9-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -727,9 +734,9 @@ let products = [
     stock: true,
     description: "Smart lighting starter kit, 3 color bulbs, bridge hub, 16 million colors, voice control, app control.",
     images: [
-      "https://www.philips-hue.com/starter-kit-front.png",
-      "https://www.philips-hue.com/starter-kit-side.png",
-      "https://www.philips-hue.com/starter-kit-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -743,9 +750,9 @@ let products = [
     stock: true,
     description: "Gaming headset with dual chamber drivers, detachable noise-cancelling mic, aluminum frame, memory foam ear cushions.",
     images: [
-      "https://www.hyperx.com/cloud-alpha-front.png",
-      "https://www.hyperx.com/cloud-alpha-side.png",
-      "https://www.hyperx.com/cloud-alpha-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -759,9 +766,9 @@ let products = [
     stock: true,
     description: "Mirrorless camera, 40MP sensor, 6.2K video, 5-axis IBIS, weather-sealed, film simulation modes, dual card slots.",
     images: [
-      "https://www.fujifilm.com/xt5-front.png",
-      "https://www.fujifilm.com/xt5-back.png",
-      "https://www.fujifilm.com/xt5-side.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -775,9 +782,9 @@ let products = [
     stock: true,
     description: "Gaming laptop, AMD Ryzen 9, 16GB RAM, 512GB SSD, NVIDIA RTX 4060, 15.6-inch 144Hz display, RGB keyboard.",
     images: [
-      "https://www.asus.com/rog-g15-front.png",
-      "https://www.asus.com/rog-g15-side.png",
-      "https://www.asus.com/rog-g15-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -791,9 +798,9 @@ let products = [
     stock: true,
     description: "Portable Bluetooth speaker, 20-hour battery, IP67 waterproof, power bank function, JBL Pro Sound, PartyBoost.",
     images: [
-      "https://www.jbl.com/charge5-blue.png",
-      "https://www.jbl.com/charge5-black.png",
-      "https://www.jbl.com/charge5-red.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   },
   {
@@ -807,9 +814,9 @@ let products = [
     stock: true,
     description: "Handheld gaming PC, AMD Zen 2 CPU, 7-inch touchscreen, 64GB storage, SteamOS, plays thousands of PC games.",
     images: [
-      "https://www.steamdeck.com/device-front.png",
-      "https://www.steamdeck.com/device-side.png",
-      "https://www.steamdeck.com/device-back.png"
+      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
+      `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
   }
 ];
