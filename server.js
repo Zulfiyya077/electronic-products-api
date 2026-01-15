@@ -1150,12 +1150,31 @@ app.patch('/api/products/bulk-update-images', (req, res) => {
   }
 });
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Electronic Products API',
+    version: '1.0.0',
+    endpoints: {
+      products: '/api/products',
+      categories: '/api/categories',
+      brands: '/api/brands',
+      health: '/api/health'
+    },
+    documentation: 'Visit /api/health for API status'
+  });
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({
     success: true,
     message: 'API is running',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development',
+    port: PORT
   });
 });
 
@@ -1178,10 +1197,12 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server is running on port ${PORT}`);
   console.log(`📦 Total products: ${products.length}`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`🔗 API endpoints:`);
+  console.log(`   GET    /`);
   console.log(`   GET    /api/products`);
   console.log(`   GET    /api/products/:id`);
   console.log(`   POST   /api/products`);
@@ -1192,5 +1213,6 @@ app.listen(PORT, () => {
   console.log(`   GET    /api/brands`);
   console.log(`   PATCH  /api/products/bulk-update-images`);
   console.log(`   GET    /api/health`);
+  console.log(`✅ Server ready to accept connections`);
 });
 
