@@ -23,9 +23,9 @@ let products = [
     stock: true,
     description: "iPhone 14 Pro with A16 Bionic chip, ProMotion 120Hz display, 48MP main camera, Ceramic Shield, up to 1TB storage.",
     images: [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-deep-purple-select?wid=470&hei=556&fmt=png-alpha&.v=1660753619946",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-silver-select?wid=470&hei=556&fmt=png-alpha&.v=1660753619946",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-gold-select?wid=470&hei=556&fmt=png-alpha&.v=1660753619946"
+      "https://pngimg.com/uploads/iphone16/iphone16_PNG38.png",
+      "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/swappie-iphone-14-pro-max-deep-purple-back.png?v=11",
+      "https://pngimg.com/uploads/iphone16/iphone16_PNG9.png"
     ]
   },
   {
@@ -39,9 +39,9 @@ let products = [
     stock: true,
     description: "Galaxy S23 Ultra with Snapdragon 8 Gen 2, 200MP camera, S Pen support, 6.8-inch AMOLED, 5000mAh battery.",
     images: [
-      "https://images.samsung.com/galaxy-s23-ultra-black.png",
-      "https://images.samsung.com/galaxy-s23-ultra-green.png",
-      "https://images.samsung.com/galaxy-s23-ultra-white.png"
+      "https://www.pngall.com/wp-content/uploads/13/Galaxy-S23-Ultra.png",
+      "https://static.vecteezy.com/system/resources/previews/035/572/092/non_2x/samsung-galaxy-s23-ultra-without-pen-transparent-image-free-png.png",
+      "https://www.pngall.com/wp-content/uploads/13/Galaxy-S23-Ultra-PNG-Images.png"
     ]
   },
   {
@@ -55,9 +55,9 @@ let products = [
     stock: true,
     description: "MacBook Pro 14-inch with M2 Pro chip, 16GB RAM, 512GB SSD, Liquid Retina XDR display, Thunderbolt 4 ports.",
     images: [
-      "https://store.storeimages.cdn-apple.com/macbook-pro-14-silver.png",
-      "https://store.storeimages.cdn-apple.com/macbook-pro-14-spacegray.png",
-      "https://store.storeimages.cdn-apple.com/macbook-pro-14-gold.png"
+      "http://www.playforce.com.sg/cdn/shop/files/11_149f2e1a-4b1d-49f5-86fc-c19efe2cb9c4_grande.png?v=1689668904",
+      "https://www.hoxtonmacs.co.uk/cdn/shop/files/apple-macbook-pro-14-inch-macbook-pro-14-inch-m2-pro-12-core-space-grey-2023-good-44361543942460.jpg?v=1701882496",
+      "https://macstore.id/wp-content/uploads/2023/05/mbp14-spacegray-gallery5-202301.jpeg"
     ]
   },
   {
@@ -71,9 +71,9 @@ let products = [
     stock: true,
     description: "Dell XPS 15 with Intel i7 13th Gen, 16GB RAM, 512GB SSD, NVIDIA RTX 4050, 15.6-inch OLED display.",
     images: [
-      "https://i.dell.com/xps15-black.png",
-      "https://i.dell.com/xps15-silver.png",
-      "https://i.dell.com/xps15-white.png"
+      "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-15-9530/media-gallery/touch-black/notebook-xps-15-9530-t-black-gallery-4.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=1354&qlt=100,1&resMode=sharp2&size=1354,804&chrss=full",
+      "https://laptopmedia.com/wp-content/uploads/2017/12/dell_xps_15_3.jpg",
+      "https://m.media-amazon.com/images/I/91WgL3IbNIL.jpg"
     ]
   },
   {
