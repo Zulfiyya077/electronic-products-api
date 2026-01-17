@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Base URL for images (Render-də deploy üçün)
 // Frontend-də şəkilləri göstərmək üçün tam URL lazımdır
 const BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://electronic-products-api.onrender.com'
+  ? 'https://electronic-products-api-1.onrender.com'
   : `http://localhost:${PORT}`;
 
 console.log('🌐 Base URL:', BASE_URL);
