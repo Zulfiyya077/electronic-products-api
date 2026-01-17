@@ -29,8 +29,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Static files - şəkilləri serve etmək üçün
-// Bu middleware bütün /images/* sorğularını asset qovluğundan serve edir
-const assetPath = path.join(__dirname, 'asset');
+// Şəkillər asset/images/ qovluğundadır
+const assetPath = path.join(__dirname, 'asset', 'images');
 console.log('📁 Asset path:', assetPath);
 console.log('📁 __dirname:', __dirname);
 
