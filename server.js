@@ -984,6 +984,66 @@ app.get('/api/products/:id', (req, res) => {
   }
 });
 
+// GET product images by ID (frontend üçün)
+app.get('/api/products/:id/images', (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const product = products.find(p => p.id === id);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      data: product.images || []
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching product images',
+      error: error.message
+    });
+  }
+});
+
+// GET search products (frontend üçün)
+app.get('/api/products/search', (req, res) => {
+  try {
+    const { q } = req.query; // Frontend-dən gələn query parameter
+    
+    if (!q) {
+      return res.status(400).json({
+        success: false,
+        message: 'Search query is required'
+      });
+    }
+
+    const searchLower = q.toLowerCase();
+    const filteredProducts = products.filter(p => 
+      p.title.toLowerCase().includes(searchLower) ||
+      p.description.toLowerCase().includes(searchLower) ||
+      p.brand.toLowerCase().includes(searchLower) ||
+      p.category.toLowerCase().includes(searchLower)
+    );
+
+    res.json({
+      success: true,
+      count: filteredProducts.length,
+      data: filteredProducts
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error searching products',
+      error: error.message
+    });
+  }
+});
+
 // POST create new product
 app.post('/api/products', (req, res) => {
   try {
