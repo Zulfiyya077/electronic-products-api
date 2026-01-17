@@ -120,4 +120,3 @@ curl https://your-app.onrender.com/api/products
 # Tək məhsul
 curl https://your-app.onrender.com/api/products/1
 ```
-

@@ -118,4 +118,3 @@ Error responses:
   "error": "Detailed error"
 }
 ```
-

@@ -7,7 +7,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Base URL for images (Render-də deploy üçün)
-const BASE_URL = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+// Render-də environment variable-da RENDER_EXTERNAL_URL yoxdur, ona görə də URL-i dinamik yaradırıq
+const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://electronic-products-api.onrender.com'
+  : `http://localhost:${PORT}`;
 
 // Middleware
 app.use(cors());
@@ -15,7 +18,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Static files - şəkilləri serve etmək üçün
-app.use('/images', express.static(path.join(__dirname, 'asset')));
+// Bu middleware bütün /images/* sorğularını asset qovluğundan serve edir
+app.use('/images', express.static(path.join(__dirname, 'asset'), {
+  setHeaders: (res, filePath) => {
+    // Şəkillər üçün cache headers
+    if (filePath.endsWith('.png') || filePath.endsWith('.webp') || filePath.endsWith('.jpg')) {
+      res.setHeader('Content-Type', filePath.endsWith('.webp') ? 'image/webp' : 
+                    filePath.endsWith('.png') ? 'image/png' : 'image/jpeg');
+    }
+  }
+}));
 
 // 50 Real Electronic Products Data
 let products = [

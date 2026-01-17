@@ -215,4 +215,3 @@ Render avtomatik olaraq yenidən deploy edəcək.
 ## ✅ Hazır!
 
 Artıq API-niz internetdədir və istifadəyə hazırdır! 🚀
-
