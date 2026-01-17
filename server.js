@@ -19,7 +19,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Static files - şəkilləri serve etmək üçün
 // Bu middleware bütün /images/* sorğularını asset qovluğundan serve edir
-app.use('/images', express.static(path.join(__dirname, 'asset'), {
+const assetPath = path.join(__dirname, 'asset');
+console.log('📁 Asset path:', assetPath);
+
+app.use('/images', express.static(assetPath, {
   setHeaders: (res, filePath) => {
     // Şəkillər üçün cache headers
     if (filePath.endsWith('.png') || filePath.endsWith('.webp') || filePath.endsWith('.jpg')) {
@@ -28,6 +31,26 @@ app.use('/images', express.static(path.join(__dirname, 'asset'), {
     }
   }
 }));
+
+// Test endpoint - asset qovluğundakı faylları yoxlamaq üçün
+app.get('/api/test-images', (req, res) => {
+  const fs = require('fs');
+  try {
+    const files = fs.readdirSync(assetPath);
+    res.json({
+      success: true,
+      assetPath: assetPath,
+      files: files,
+      baseUrl: BASE_URL
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      error: error.message,
+      assetPath: assetPath
+    });
+  }
+});
 
 // 50 Real Electronic Products Data
 let products = [
