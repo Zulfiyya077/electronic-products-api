@@ -36,9 +36,20 @@ console.log('📁 __dirname:', __dirname);
 
 // Render-də işləmək üçün static files middleware
 // Bu middleware route-lardan ƏVVƏL olmalıdır ki, şəkillər düzgün serve olunsun
+const fs = require('fs');
+
+// Asset path-in mövcud olduğunu yoxla
+if (!fs.existsSync(assetPath)) {
+  console.error('❌ Asset path does not exist:', assetPath);
+} else {
+  const files = fs.readdirSync(assetPath);
+  console.log('✅ Asset path exists. Files:', files);
+}
+
 app.use('/images', express.static(assetPath, {
   dotfiles: 'ignore',
   index: false,
+  fallthrough: false, // 404 vermək üçün
   setHeaders: (res, filePath) => {
     // CORS headers - şəkillər üçün lazımdır
     res.setHeader('Access-Control-Allow-Origin', '*');
