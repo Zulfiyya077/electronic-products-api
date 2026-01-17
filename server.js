@@ -47,27 +47,25 @@ if (!fs.existsSync(assetPath)) {
 }
 
 // Static files middleware - şəkilləri serve etmək üçün
-app.use('/images', (req, res, next) => {
-  // CORS headers əlavə et
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
-  
-  // Express static middleware-i çağır
-  express.static(assetPath, {
-    dotfiles: 'allow', // Nöqtə ilə başlayan fayllara icazə ver
-    index: false,
-    setHeaders: (res, filePath) => {
-      // Şəkillər üçün content type və cache headers
-      if (filePath.endsWith('.png') || filePath.endsWith('.webp') || filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
-        const contentType = filePath.endsWith('.webp') ? 'image/webp' : 
-                           filePath.endsWith('.png') ? 'image/png' : 
-                           'image/jpeg';
-        res.setHeader('Content-Type', contentType);
-        res.setHeader('Cache-Control', 'public, max-age=31536000');
-      }
+// Daha sadə və etibarlı versiya
+app.use('/images', express.static(assetPath, {
+  dotfiles: 'allow', // Nöqtə ilə başlayan fayllara icazə ver (01.JBL...)
+  index: false,
+  setHeaders: (res, filePath) => {
+    // CORS headers - şəkillər üçün lazımdır
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    
+    // Şəkillər üçün content type və cache headers
+    if (filePath.endsWith('.png') || filePath.endsWith('.webp') || filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
+      const contentType = filePath.endsWith('.webp') ? 'image/webp' : 
+                         filePath.endsWith('.png') ? 'image/png' : 
+                         'image/jpeg';
+      res.setHeader('Content-Type', contentType);
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
     }
-  })(req, res, next);
-});
+  }
+}));
 
 // Test endpoint - asset qovluğundakı faylları yoxlamaq üçün
 app.get('/api/test-images', (req, res) => {
