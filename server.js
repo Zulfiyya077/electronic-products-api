@@ -8,12 +8,23 @@ const PORT = process.env.PORT || 3000;
 
 // Base URL for images (Render-də deploy üçün)
 // Render-də environment variable-da RENDER_EXTERNAL_URL yoxdur, ona görə də URL-i dinamik yaradırıq
+// Base URL for images (Render-də deploy üçün)
+// Frontend-də şəkilləri göstərmək üçün tam URL lazımdır
 const BASE_URL = process.env.NODE_ENV === 'production' 
   ? 'https://electronic-products-api.onrender.com'
   : `http://localhost:${PORT}`;
 
+console.log('🌐 Base URL:', BASE_URL);
+console.log('🌍 Environment:', process.env.NODE_ENV || 'development');
+
 // Middleware
-app.use(cors());
+// CORS - bütün origin-lərə icazə ver (şəkillər üçün də lazımdır)
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: false
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -21,13 +32,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Bu middleware bütün /images/* sorğularını asset qovluğundan serve edir
 const assetPath = path.join(__dirname, 'asset');
 console.log('📁 Asset path:', assetPath);
+console.log('📁 __dirname:', __dirname);
 
+// Render-də işləmək üçün static files middleware
+// Bu middleware route-lardan ƏVVƏL olmalıdır ki, şəkillər düzgün serve olunsun
 app.use('/images', express.static(assetPath, {
+  dotfiles: 'ignore',
+  index: false,
   setHeaders: (res, filePath) => {
-    // Şəkillər üçün cache headers
-    if (filePath.endsWith('.png') || filePath.endsWith('.webp') || filePath.endsWith('.jpg')) {
-      res.setHeader('Content-Type', filePath.endsWith('.webp') ? 'image/webp' : 
-                    filePath.endsWith('.png') ? 'image/png' : 'image/jpeg');
+    // CORS headers - şəkillər üçün lazımdır
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    
+    // Şəkillər üçün content type və cache headers
+    if (filePath.endsWith('.png') || filePath.endsWith('.webp') || filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
+      const contentType = filePath.endsWith('.webp') ? 'image/webp' : 
+                         filePath.endsWith('.png') ? 'image/png' : 
+                         'image/jpeg';
+      res.setHeader('Content-Type', contentType);
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
     }
   }
 }));
