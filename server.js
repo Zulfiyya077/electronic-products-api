@@ -100,7 +100,7 @@ let products = [
     stock: true,
     description: "iPhone 14 Pro with A16 Bionic chip, ProMotion 120Hz display, 48MP main camera, Ceramic Shield, up to 1TB storage.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/macbook_PNG68.png`, // iPhone şəkli yoxdur, placeholder
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
@@ -116,7 +116,7 @@ let products = [
     stock: true,
     description: "Galaxy S23 Ultra with Snapdragon 8 Gen 2, 200MP camera, S Pen support, 6.8-inch AMOLED, 5000mAh battery.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
@@ -148,7 +148,7 @@ let products = [
     stock: true,
     description: "Dell XPS 15 with Intel i7 13th Gen, 16GB RAM, 512GB SSD, NVIDIA RTX 4050, 15.6-inch OLED display.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/dell-xps-16-1.avif`,
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
@@ -164,7 +164,7 @@ let products = [
     stock: true,
     description: "Wireless gaming headset with noise cancelling, 3D sound with JBL QuantumSURROUND, detachable mic, RGB lighting.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/JBL-Quantum-800-specs.jpg`,
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
@@ -180,7 +180,7 @@ let products = [
     stock: true,
     description: "Noise cancelling headphones, up to 30 hours battery, touch controls, adaptive sound, premium comfort.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/isolated-sony-wh-1000xm5-wireless-headphones-front-view-featuring-white-background-clean_655090-801083.avif`,
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
@@ -196,7 +196,7 @@ let products = [
     stock: true,
     description: "Apple Watch Series 8 with temperature sensing, ECG, blood oxygen, fitness tracking, swimproof, 18-hour battery.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/apple-watch-series-8-pp-header.png`,
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
@@ -212,7 +212,7 @@ let products = [
     stock: true,
     description: "Pixel 7 Pro with Google Tensor G2, 120Hz display, 50MP camera, AI-powered features, Android 13.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/Google-Pixel-7-Pro-929.jpg`,
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
@@ -244,7 +244,7 @@ let products = [
     stock: true,
     description: "Next-gen console with Ultra HD Blu-ray, 4K gaming, haptic feedback controller, backwards compatible with PS4 games.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/playstation-5-.avif`,
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
@@ -260,7 +260,7 @@ let products = [
     stock: true,
     description: "Next-gen console with 12TFLOPs GPU, 1TB SSD, Quick Resume, backward compatibility, 4K gaming and streaming.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/xbox_PNG101375.png`,
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
@@ -276,7 +276,7 @@ let products = [
     stock: true,
     description: "Full-frame mirrorless camera, 20fps shooting, 4K video, Dual Pixel CMOS AF II, ISO 102400.",
     images: [
-      `${BASE_URL}/images/macbook_PNG68.png`,
+      `${BASE_URL}/images/canonn.webp`,
       `${BASE_URL}/images/samsung.webp`,
       `${BASE_URL}/images/01.JBL_Tune-720BT_Product-Image_Hero_Black.webp`
     ]
